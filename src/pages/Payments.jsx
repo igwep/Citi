@@ -57,24 +57,27 @@ const PaymentsPage = () => {
 
         {/* Tab Content */}
         {activeTab === "Utility Pay" && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
-            {[
-              { name: "Electricity", icon: "/Svg/electricity-svgrepo-com.svg" },
-              { name: "Landline", icon: "/Svg/home-telephone-svgrepo-com.svg" },
-              { name: "Mobile", icon: "/Svg/mobile-phone-svgrepo-com.svg" },
-              { name: "Gas", icon: "/Svg/gas-svgrepo-com.svg" },
-              { name: "DTH", icon: "/Svg/antenna-svgrepo-com.svg" },
-              { name: "Data Card", icon: "/Svg/home-telephone-svgrepo-com.svg" },
-              { name: "Broadband", icon: "/Svg/home-telephone-svgrepo-com.svg" },
-              { name: "Donate", icon: "/Svg/home-telephone-svgrepo-com.svg" },
-            ].map((option) => (
-              <div key={option.name} className="flex flex-col items-center text-center">
-                <img src={option.icon} alt={option.name} className="w-12 h-12" />
-                <span className="mt-2 text-gray-700">{option.name}</span>
-              </div>
-            ))}
-          </div>
-        )}
+  <div className="grid grid-cols-2 sm:grid-cols-4   border border-gray-100">
+    {[
+      { name: "Electricity", icon: "/Svg/electricity-svgrepo-com.svg" },
+      { name: "Landline", icon: "/Svg/home-telephone-svgrepo-com.svg" },
+      { name: "Mobile", icon: "/Svg/mobile-phone-svgrepo-com.svg" },
+      { name: "Gas", icon: "/Svg/gas-svgrepo-com.svg" },
+      { name: "DTH", icon: "/Svg/antenna-svgrepo-com.svg" },
+      { name: "Data Card", icon: "/Svg/flash-drive-svgrepo-com.svg" },
+      
+    ].map((option) => (
+      <div
+        key={option.name}
+        className="flex flex-col items-center text-center border border-gray-100 p-4"
+      >
+        <img src={option.icon} alt={option.name} className="w-12 h-12" />
+        <span className="mt-2 text-gray-700">{option.name}</span>
+      </div>
+    ))}
+  </div>
+)}
+
 
         {activeTab === "Card Payments" && (
           <div className="mt-6 bg-white shadow-md rounded-lg p-6">

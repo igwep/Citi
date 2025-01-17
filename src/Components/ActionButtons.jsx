@@ -6,8 +6,8 @@ export const ActionButtons = () => {
     { name: "Pay Bills", icon: "Svg/bill-list-svgrepo-com.svg" },
     { name: "Recharge Wallet", icon: "Svg/wallet-svgrepo-com.svg" },
     { name: "Mobile Recharge", icon: "Svg/smartphone-svgrepo-com.svg" },
-    { name: "Buy Crypto", icon: "Svg/crypto-svgrepo-com.svg" },
-    { name: "Deposit Funds", icon: "Svg/deposit-svgrepo-com.svg" },
+    { name: "Buy Crypto", icon: "Svg/buy-crypto-svgrepo-com.svg" },
+    { name: "Deposit Funds", icon: "Svg/atm-deposit-svgrepo-com.svg" },
   ];
 
   return (
