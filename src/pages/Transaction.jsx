@@ -1,6 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import LoadingSpinner from "../Components/LoadingSpinner";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { colors, IconButton } from "@mui/material";
+
 
 const TransactionsHistoryPage = () => {
+  const { user, loading } = useAuth();
+
+
+  if (loading) {
+    return <LoadingSpinner />; // Loading state
+  }
+
+  if (!user) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-white">
+        <h2 className="text-xl text-red-500">User not authenticated!</h2>
+      </div>
+    );
+  }
+
+
   // Example transaction data
   const transactions = [
     { date: "02 July", description: "Verizon", category: "Mobile Bill Payment", amount: -142.36 },
@@ -14,10 +36,31 @@ const TransactionsHistoryPage = () => {
   return (
     <div className="bg-gray-100 font-lato min-h-screen flex flex-col">
       {/* Account Summary */}
-      <div className="bg-blue-600 text-white p-6 rounded-b-lg">
+      <div className="bg-customColor relative flex justify-evenly items-center  text-white  h-56">
+      <div className="absolute overflow-hidden inset-0">
+      <Link  to="/dashboard"
+         // Navigates back to the previous page
+        className="absolute top-4 cursor-pointer left-4 z-50 text-white" // Position it in the top-left corner of the screen
+      >
+        <ArrowBackIcon sx={{color: 'white'}} />
+      </Link>
+        {/* Top Left White Shape */}
+        <div className="absolute top-0 left-0 w-48 h-48 bg-white opacity-5 transform -translate-x-10 -translate-y-10"></div>
+
+        {/* Bottom Right White Shape */}
+        <div className="absolute bottom-0 right-0 w-48 h-48 bg-white opacity-5 transform translate-x-10 translate-y-10"></div>
+
+        {/* Diagonal White Stripe */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-white to-transparent opacity-5 transform -rotate-12"></div>
+      </div>
+        <div className="flex flex-col items-center gap-8">
         <p className="text-lg">Savings A/c 9876543210</p>
-        <h2 className="text-3xl font-bold mt-2">$44,650.00</h2>
-        <p className="text-sm mt-1">Available Balance</p>
+       <div className="flex flex-col items-center">
+       <p className="text-sm mt-1">Available Balance</p>
+       <h2 className="text-4xl  mt-2">${user.balance}</h2>
+       </div>
+       
+        </div>
       </div>
 
       {/* Transactions History */}

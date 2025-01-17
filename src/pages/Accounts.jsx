@@ -53,7 +53,7 @@ const AccountsPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold text-gray-700">Available Cash</h2>
-                <p className="text-customColor text-xl font-bold">${accountsData.availableCash}</p>
+                <p className="text-customColor text-xl font-bold">${user.balance}</p>
               </div>
               <img
                 src="Svg/cash-payment-svgrepo-com.svg"

@@ -5,10 +5,13 @@ import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import ProtectedRoute from "./Components/ProtectedRoute"; // Import the ProtectedRoute component
+import AdminRoute from "./Components/AdminRoute"; // Import the AdminRoute component
 import AccountsPage from "./pages/Accounts";
 import TransfersPage from "./pages/TransfersPage";
 import PaymentsPage from "./pages/Payments";
 import TransactionsHistoryPage from "./pages/Transaction";
+import AdminPage from "./pages/AdminPage";
+
 
 function App() {
   return (
@@ -31,15 +34,15 @@ function App() {
             path="/accounts"
             element={
               <ProtectedRoute>
-                <AccountsPage/>
+                <AccountsPage />
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/transfers"
             element={
               <ProtectedRoute>
-                <TransfersPage/>
+                <TransfersPage />
               </ProtectedRoute>
             }
           />
@@ -47,16 +50,26 @@ function App() {
             path="/payments"
             element={
               <ProtectedRoute>
-                <PaymentsPage/>
+                <PaymentsPage />
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/transactions"
             element={
               <ProtectedRoute>
-                <TransactionsHistoryPage/>
+                <TransactionsHistoryPage />
               </ProtectedRoute>
+            }
+          />
+
+          {/* Admin Route */}
+          <Route
+            path="/admin"
+            element={
+             
+                <AdminPage />
+              
             }
           />
 

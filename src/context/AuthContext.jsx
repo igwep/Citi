@@ -28,6 +28,9 @@ export const AuthProvider = ({ children }) => {
               uid: firebaseUser.uid,
               email: firebaseUser.email,
               balance: userDocSnap.data().balance, // Fetch balance
+              lastName: userDocSnap.data().lastName,
+              firstName: userDocSnap.data().firstName,
+              lastLogin: firebaseUser.metadata.lastSignInTime,
               // Add other fields as needed
             };
             setUser(userData);

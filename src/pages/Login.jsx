@@ -29,8 +29,18 @@ const LoginPage = () => {
         // Authenticate with Firebase using the email and password
         await signInWithEmailAndPassword(auth, userEmail, password);
   
-        // After successful login, navigate to the dashboard or desired page
-        navigate("/dashboard");
+        // Check the role of the authenticated user
+        const userRole = userData.role;  // Assuming role is stored in the user's Firestore document
+  
+        // Redirect based on user role
+        if (userRole === "admin") {
+          navigate("/admin");  // Redirect to admin dashboard if the user is an admin
+        } else if (userRole === "user") {
+          navigate("/dashboard");  // Redirect to regular user dashboard
+        } else {
+          setErrorMessage("Role not recognized.");
+          console.error("Role not recognized.");
+        }
       } else {
         setErrorMessage("User not found with this identifier.");
         console.error("No user found with this identifier.");
@@ -46,6 +56,7 @@ const LoginPage = () => {
       }
     }
   };
+  
   
   return (
     <div className="flex font-lato flex-col md:flex-row h-screen relative overflow-x-hidden">
