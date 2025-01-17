@@ -227,12 +227,13 @@ const LoginPage = () => {
       </div>
       {/* Larger White Boxes on Background in Diagonal Pattern */}
       <div className="absolute inset-0 z-0">
-        <div className="bg-white bg-opacity-5 w-96 h-96 rotate-12 absolute top-60 left-60 rounded-sm"></div>
-        {/* Smaller White Boxes Below with Reduced Opacity */}
-        <div className="bg-white bg-opacity-5 w-56 h-56 rotate-12 absolute bottom-20 right-40 rounded-sm"></div>
-        <div className="bg-white bg-opacity-5 w-96 h-96 rotate-12 absolute bottom-30 left-40 rounded-sm"></div>
-        {/* Add more white boxes as needed */}
-      </div>
+  <div className="bg-white bg-opacity-5 w-96 h-96 rotate-12 absolute top-60 left-60 rounded-sm floating-animation"></div>
+  {/* Smaller White Boxes Below with Reduced Opacity */}
+  <div className="bg-white bg-opacity-5 w-56 h-56 rotate-12 absolute bottom-20 right-40 rounded-sm floating-animation"></div>
+  <div className="bg-white bg-opacity-5 w-96 h-96 rotate-12 absolute bottom-30 left-40 rounded-sm floating-animation"></div>
+  {/* Add more white boxes as needed */}
+</div>
+
     </div>
   );
 };
