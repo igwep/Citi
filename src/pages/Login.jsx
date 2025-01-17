@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../svg/Logo";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../Firebase";
+import { auth, db } from "../../Firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const LoginPage = () => {
   const [userId, setUserId] = useState("");
@@ -12,15 +13,40 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+  
     try {
-      await signInWithEmailAndPassword(auth, userId, password);
-      // After successful login, navigate to dashboard or desired page
-      navigate("/dashboard"); // Change the path to the route you want to navigate to
+      // Query Firestore to find the user document based on the identifier field
+      const q = query(collection(db, "users"), where("identifier", "==", userId));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data();
+  
+        // Get the email associated with the found user document
+        const userEmail = userData.email;
+  
+        // Authenticate with Firebase using the email and password
+        await signInWithEmailAndPassword(auth, userEmail, password);
+  
+        // After successful login, navigate to the dashboard or desired page
+        navigate("/dashboard");
+      } else {
+        setErrorMessage("User not found with this identifier.");
+        console.error("No user found with this identifier.");
+      }
     } catch (error) {
-      // If an error occurs (wrong credentials), display an error message
-      setErrorMessage("Invalid credentials. Please try again.");
+      console.error("Error during login:", error.code, error.message);
+      if (error.code === "auth/wrong-password") {
+        setErrorMessage("Incorrect password. Please try again.");
+      } else if (error.code === "auth/user-not-found") {
+        setErrorMessage("No user found with this identifier.");
+      } else {
+        setErrorMessage("An error occurred during login. Please try again.");
+      }
     }
   };
+  
   return (
     <div className="flex font-lato flex-col md:flex-row h-screen relative overflow-x-hidden">
       {/* Left Section */}
