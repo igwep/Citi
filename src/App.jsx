@@ -19,7 +19,7 @@ function App() {
       <Router>
         <Routes>
           {/* Define the route for the login page */}
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
 
           {/* Protected Route for Dashboard */}
           <Route
@@ -76,14 +76,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
 
           {/* Default Route */}
-          <Route
-            path="/"
-            element={
-              <div className="h-screen flex items-center justify-center">
-                <h1 className="text-4xl font-bold">Welcome to the App</h1>
-              </div>
-            }
-          />
+          
 
           {/* 404 Page Not Found */}
           <Route
