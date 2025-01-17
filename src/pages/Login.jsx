@@ -1,7 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../svg/Logo";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../Firebase";
 
 const LoginPage = () => {
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, userId, password);
+      // After successful login, navigate to dashboard or desired page
+      navigate("/dashboard"); // Change the path to the route you want to navigate to
+    } catch (error) {
+      // If an error occurs (wrong credentials), display an error message
+      setErrorMessage("Invalid credentials. Please try again.");
+    }
+  };
   return (
     <div className="flex font-lato flex-col md:flex-row h-screen relative overflow-x-hidden">
       {/* Left Section */}
@@ -35,24 +54,29 @@ const LoginPage = () => {
             <h1 className="text-white text-2xl font-bold mt-2">Welcome to Citi bank</h1>
           </div>
           {/* Form with Line Inputs */}
-          <form className="w-full max-w-sm flex flex-col items-center gap-8">
+          <form onSubmit={handleLogin}
+           className="w-full max-w-sm flex flex-col items-center gap-8">
             <input
               type="text"
-              id="UserId"
-              className="w-full px-3 py-2 border-b-2 border-blue-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
+              id="UserIdM"
+              className="w-full px-3 py-2 text-white border-b-2 border-blue-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
               placeholder="User ID"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
             />
             <input
               type="password"
-              id="password"
-              className="w-full px-3 py-2 border-b-2 border-blue-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
+              id="passwordM"
+              className="w-full px-3 py-2 text-white border-b-2 border-blue-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {/* Remember Me Checkbox */}
             <div className="flex items-center gap-2 mt-2">
               <input
                 type="checkbox"
-                id="rememberMe"
+                id="rememberMeM"
                 className="w-4 h-4 bg-transparent border-2 border-gray-300 rounded-sm checked:bg-blue-600 checked:border-blue-600 focus:ring-2 focus:ring-blue-600"
               />
               <label htmlFor="rememberMe" className="text-white text-sm">
@@ -65,6 +89,9 @@ const LoginPage = () => {
             >
               Login
             </button>
+            {errorMessage && (
+              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+            )}
           </form>
         </div>
       </div>
@@ -73,7 +100,7 @@ const LoginPage = () => {
       <div className="flex-1 hidden z-20 md:flex items-center justify-center bg-white">
   <div className="w-full max-w-md p-6 bg-white rounded-md shadow-lg">
     <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Sign On</h2>
-    <form>
+    <form onSubmit={handleLogin}>
       {/* User ID and Password in a Line */}
       <div className="flex flex-col md:flex-row md:gap-4 mb-6">
         {/* User ID Field */}
@@ -86,6 +113,8 @@ const LoginPage = () => {
             id="userId"
             className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             placeholder="Enter your User ID"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
           />
         </div>
         {/* Password Field */}
@@ -98,6 +127,8 @@ const LoginPage = () => {
             id="password"
             className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             placeholder="Enter your Password"
+            value={password}
+              onChange={(e) => setPassword(e.target.value)}
           />
         </div>
       </div>
@@ -119,6 +150,9 @@ const LoginPage = () => {
       >
         Sign On
       </button>
+      {errorMessage && (
+              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+            )}
     </form>
     {/* Links Section */}
     <div className="flex justify-between items-center mt-4 text-sm">
