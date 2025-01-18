@@ -27,7 +27,11 @@ const AccountsPage = () => {
     fundsInClearing: "326.00",
     multiDepositBalance: "4,769.00",
   };
-
+  const formattedBalance = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  }).format(user.balance);
   return (
     <div className="bg-gray-100 font-lato min-h-screen flex flex-col">
       {/* Header */}
@@ -53,7 +57,9 @@ const AccountsPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold text-gray-700">Available Cash</h2>
-                <p className="text-customColor text-xl font-bold">${user.balance}</p>
+                <p className="text-customColor text-xl font-bold">
+  ${user.balance.toLocaleString()}
+</p>
               </div>
               <img
                 src="Svg/cash-payment-svgrepo-com.svg"
@@ -104,10 +110,6 @@ const AccountsPage = () => {
     <span className="text-xl font-bold">+</span>
   </button>
 </div>
-
-
-
-
         </div>
       </div>
 
