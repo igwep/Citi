@@ -25,7 +25,7 @@ export const UserInfo = ({ name, lastLogin, profilePicture }) => (
       <img
         src={profilePicture || "/default-profile.jpg"} // Replace with the actual default profile picture path
         alt="Profile"
-        className="w-16 h-16 rounded-full border-2 border-white"
+        className="w-16 h-16 rounded-full object-cover border-2 border-white"
       />
       {/* Notification Icon */}
       <NotificationsNoneIcon fontSize="large" />

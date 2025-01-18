@@ -16,7 +16,7 @@ const LogoutConfirmationModal = () => {
     try {
       await signOut(auth); // Firebase sign out
       setOpen(false);
-      navigate("/login"); // Redirect to login page
+      navigate("/"); // Redirect to login page
     } catch (error) {
       console.error("Error logging out:", error.message);
     }

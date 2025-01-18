@@ -9,11 +9,12 @@ const LoginPage = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+    setLoading(true);
     try {
       // Query Firestore to find the user document based on the identifier field
       const q = query(collection(db, "users"), where("identifier", "==", userId));
@@ -53,7 +54,9 @@ const LoginPage = () => {
         setErrorMessage("No user found with this identifier.");
       } else {
         setErrorMessage("An error occurred during login. Please try again.");
-      }
+      } 
+    } finally {
+      setLoading(false); // Reset loading state when login completes
     }
   };
   
@@ -122,9 +125,12 @@ const LoginPage = () => {
             </div>
             <button
               type="submit"
-              className="w-full py-3 text-white bg-customBlue rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className={`w-full py-3 text-white bg-customBlue rounded-full ${
+                loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
+              }`}
+              disabled={loading} // Disable button when loading
             >
-              Login
+              {loading ? "Logging In..." : "Login"} {/* Show loading text */}
             </button>
             {errorMessage && (
               <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
@@ -182,11 +188,15 @@ const LoginPage = () => {
       </div>
       {/* Submit Button */}
       <button
-        type="submit"
-        className="w-full py-2 text-white bg-customColor rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-1"
-      >
-        Sign On
-      </button>
+  type="submit"
+  className={`w-full py-2 text-white ${
+    loading ? "bg-gray-500 opacity-50 cursor-not-allowed" : "bg-customColor hover:bg-blue-700"
+  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-1`}
+  disabled={loading} // Disable button when loading
+>
+  {loading ? "Logging In..." : "Sign On"} {/* Show loading text */}
+</button>
+
       {errorMessage && (
               <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
             )}

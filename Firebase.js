@@ -1,6 +1,11 @@
-// firebaseClient.js
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -16,8 +21,19 @@ const firebaseConfig = {
 // Initialize Firebase App
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Auth and Firestore
+// Initialize Firebase Auth
 const auth = getAuth(app);
+
+// Set persistence to local storage
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("Persistence set to local storage.");
+  })
+  .catch((error) => {
+    console.error("Error setting persistence:", error);
+  });
+
+// Initialize Firestore
 const db = getFirestore(app);
 
 export { auth, db, app };
