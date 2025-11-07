@@ -26,7 +26,7 @@ const Dashboard = () => {
   }
 
   const users = {
-    name: user.name || "Joseph Harvey",
+    name: user.name || "Tyler Brenda",
     lastLogin: user.lastLogin || "22 June, 2017 04:25 CST",
     balance: user.balance || "0.00",
     savings: user.savings || "9876543210",

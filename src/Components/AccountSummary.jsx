@@ -24,24 +24,22 @@ export const AccountSummary = ({ balance, savings, debit }) => {
     {/* Savings and Debit Section for Mobile */}
     <div className="grid grid-cols-2 divide-x divide-gray-300 border-t border-b border-gray-200 mt-4 text-sm text-gray-600 lg:hidden">
       {/* Savings Section */}
+      
       <div className="flex flex-col items-center border-gray-100 p-4">
         <span className="font-medium text-customGray">Savings A/c:</span>
         <span className="font-bold text-customColor mt-2">{savings}</span>
       </div>
-
       {/* Debit Section */}
       <div className="flex flex-col items-center border-gray-100 p-4">
         <span className="font-medium text-customGray">Debit Card:</span>
         <span className="font-bold text-customColor mt-2">{debit}</span>
       </div>
     </div>
-
     {/* Button (Mobile and Desktop) */}
    <Link to="/transactions">
     <button className="text-customBlue   border-customBlue border mt-6 py-2 px-6 rounded-full hover:text-white hover:bg-blue-700">
       Transactions History
     </button></Link>
-
     {/* Desktop Layout */}
     <div className="hidden lg:flex gap-4 mt-8 p-6 border bg-customLightBlue rounded-lg">
       <div className="flex justify-between w-full">
