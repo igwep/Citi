@@ -17,7 +17,7 @@ export const ProfilePicture = () => {
       <div className="h-screen flex items-center justify-center bg-white">
         <h2 className="text-xl text-red-500">User not authenticated!</h2>
       </div>
-    );
+    );//
   }
   return (
 
