@@ -23,7 +23,7 @@ export const UserInfo = ({ name, lastLogin, profilePicture }) => (
     <div className="flex items-center space-x-4">
       {/* Profile Picture */}
       <img
-        src="/pic.png"/* {profilePicture || "/default-profile.jpg"} */ // Replace with the actual default profile picture path
+        src="/image.jpeg"/* {profilePicture || "/default-profile.jpg"} */ // Replace with the actual default profile picture path
         alt="Profile"
         className="w-16 h-16 rounded-full object-cover border-2 border-white"
       />
