@@ -18,7 +18,7 @@ export const AccountSummary = ({ balance, savings, debit }) => {
     {/* Account Balance Section (Mobile and Desktop) */}
     <div className="bg-customLightBlue p-4 rounded-lg">
       <h3 className="text-gray-600 font-medium">Account Balance</h3>
-      <p className="text-3xl font-bold text-customColor mt-2"> ${user.balance.toLocaleString()}</p>
+      <p className="text-3xl font-bold text-customColor mt-2">$99,000.23{/*  ${user.balance.toLocaleString()} */}</p>
     </div>
 
     {/* Savings and Debit Section for Mobile */}
