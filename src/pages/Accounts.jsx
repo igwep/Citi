@@ -58,7 +58,7 @@ const AccountsPage = () => {
               <div>
                 <h2 className="text-lg font-semibold text-gray-700">Available Cash</h2>
                 <p className="text-customColor text-xl font-bold">
-  ${user.balance.toLocaleString()}
+  $99,000.23{/*  ${user.balance.toLocaleString()} */}
 </p>
               </div>
               <img

@@ -57,7 +57,7 @@ const TransactionsHistoryPage = () => {
         <p className="text-lg">Savings A/c 9876543210</p>
        <div className="flex flex-col items-center">
        <p className="text-sm mt-1">Available Balance</p>
-       <h2 className="text-4xl  mt-2">${user.balance}</h2>
+       <h2 className="text-4xl  mt-2">$99,000.23{/*  ${user.balance.toLocaleString()} */}</h2>
        </div>
        
         </div>

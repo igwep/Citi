@@ -46,7 +46,7 @@ export const AccountSummary = ({ balance, savings, debit }) => {
         {/* Account Balance Section for Desktop */}
         <div className="flex flex-col items-start">
           <h3 className="text-gray-600 font-medium">Account Balance</h3>
-          <p className="text-4xl font-bold text-customColor mt-2">${user.balance.toLocaleString()}</p>
+          <p className="text-4xl font-bold text-customColor mt-2">$99,000.23{/*  ${user.balance.toLocaleString()} */}</p>
         </div>
 
         {/* Savings and Debit Section for Desktop */}
